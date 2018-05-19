@@ -30,7 +30,7 @@ public class KnockKnockImpl {
             }
         }
 
-        return String.format("\"%s\"",reverse.toString());
+        return String.format("\"%s\"",reverse.toString().trim());
     }
 
     public UUID getToken () {
