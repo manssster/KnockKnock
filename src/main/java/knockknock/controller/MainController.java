@@ -5,6 +5,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import knockknock.impl.KnockKnockImpl;
 import knockknock.model.TriangleTypes;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +35,7 @@ public class MainController {
 
     @GetMapping("/api/Fibonacci")
     @ResponseBody
-    public long Fibonacci(@RequestParam(value="n")long sequence) {
+    public ResponseEntity Fibonacci(@RequestParam(value="n")long sequence) {
         return impl.getFibonacciSequence(sequence);
     }
 

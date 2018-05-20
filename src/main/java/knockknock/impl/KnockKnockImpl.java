@@ -1,6 +1,8 @@
 package knockknock.impl;
 
 import knockknock.model.TriangleTypes;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 import java.util.UUID;
 
@@ -8,9 +10,17 @@ public class KnockKnockImpl {
 
     private static final String MY_TOKEN = "00000000-0000-0000-0000-000000000000";
 
-    public long getFibonacciSequence(long n) {
+    public ResponseEntity getFibonacciSequence(long n) {
+        int sign = Long.signum(n);
+        int threshold = 92;
         long fibonacci;
         long num1 = 0, num2 = 1;
+
+        n = Math.abs(n);
+
+        if (n > threshold) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
         for (long i=0; i<n; i++)
         {
@@ -19,7 +29,9 @@ public class KnockKnockImpl {
             num2 = fibonacci;
         }
 
-        return num1;
+        num1 = num1 * sign;
+
+        return new ResponseEntity<>(num1, HttpStatus.OK);
     }
 
     public String reverseWords(String sentence) {
