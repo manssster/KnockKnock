@@ -48,7 +48,7 @@ public class KnockKnockImpl {
     }
 
     public UUID getToken () {
-        return UUID.fromString(MY_TOKEN);
+        return UUID.fromString(MY_TOKEN.toUpperCase());
     }
 
     public TriangleTypes triangleType(int a, int b, int c) {
