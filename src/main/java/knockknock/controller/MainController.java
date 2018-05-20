@@ -5,18 +5,26 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import knockknock.impl.KnockKnockImpl;
 import knockknock.model.TriangleTypes;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class MainController {
 
     private final AtomicLong counter = new AtomicLong();
     private KnockKnockImpl impl = new KnockKnockImpl();
+
+    @ExceptionHandler(Exception.class)
+    public void handleException(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        req.setAttribute("originalUrl", req.getRequestURL());
+        req.getRequestDispatcher("/error").forward(req, resp);
+    }
 
     @GetMapping("/api/Token")
     @ResponseBody

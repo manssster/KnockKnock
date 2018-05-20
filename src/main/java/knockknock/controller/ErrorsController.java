@@ -14,8 +14,7 @@ public class ErrorsController implements ErrorController {
 
     @RequestMapping()
     public ErrorResp error(HttpServletRequest request) {
-        String uri = request.getRequestURL().toString();
-        return new ErrorResp("No HTTP resource was found that matches the request URI '" + uri + "'.");
+        return new ErrorResp(String.format("No HTTP resource was found that matches the request URI '%s'.", request.getAttribute("originalUrl")));
     }
 
     @Override
