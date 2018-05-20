@@ -4,6 +4,7 @@ import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 
 import knockknock.impl.KnockKnockImpl;
+import knockknock.model.TriangleTypes;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -37,7 +38,7 @@ public class MainController {
 
     @GetMapping("/api/TriangleType")
     @ResponseBody
-    public String TriangleType(@RequestParam()int a, int b, int c) {
+    public TriangleTypes TriangleType(@RequestParam()int a, int b, int c) {
         return impl.triangleType(a, b, c);
     }
 }

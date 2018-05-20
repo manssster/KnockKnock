@@ -1,5 +1,7 @@
 package knockknock.impl;
 
+import knockknock.model.TriangleTypes;
+
 import java.util.UUID;
 
 public class KnockKnockImpl {
@@ -37,7 +39,46 @@ public class KnockKnockImpl {
         return UUID.fromString(MY_TOKEN);
     }
 
-    public String triangleType(int a, int b, int c) {
-        return "";
+    public TriangleTypes triangleType(int a, int b, int c) {
+        if (!isTriangle(a, b, c)) {
+            return TriangleTypes.Error;
+        }
+
+        return  determineTriangleType(a, b, c);
+    }
+
+    private boolean isTriangle(int a, int b, int c) {
+        boolean isTriangle = true;
+
+        //validate
+        if (a+b <= c) {
+            isTriangle = false;
+        }
+
+        if (b+c <= a) {
+            isTriangle = false;
+        }
+
+        if (c+a <= b) {
+            isTriangle = false;
+        }
+
+        return isTriangle;
+    }
+
+    private TriangleTypes determineTriangleType(int a, int b, int c) {
+        TriangleTypes type;
+
+        if((a == b) && (b == c)){
+            type = TriangleTypes.Equilateral;
+        }
+        else if ((a == b) || (b == c)) {
+            type = TriangleTypes.Isosceles;
+        }
+        else {
+            type = TriangleTypes.Scalene;
+        }
+
+        return type;
     }
 }
