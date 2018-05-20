@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public class KnockKnockImpl {
 
-    private static final String MY_TOKEN = "00000000-0000-0000-0000-000000000000";
+    private static final String MY_TOKEN = "e3abc004-fe40-493e-b4bf-194b7895d7e1";
 
     public ResponseEntity getFibonacciSequence(long n) {
         int sign = Long.signum(n);
