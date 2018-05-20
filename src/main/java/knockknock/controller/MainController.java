@@ -33,6 +33,12 @@ public class MainController {
         return impl.getToken();
     }
 
+    @GetMapping("/api/token")
+    @ResponseBody
+    public UUID token() {
+        return impl.getToken();
+    }
+
     @GetMapping("/api/Fibonacci")
     @ResponseBody
     public ResponseEntity Fibonacci(@RequestParam(value="n")long sequence) {
